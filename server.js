@@ -63,8 +63,9 @@ async function startServer() {
     try {
         // 1. Connect to MongoDB
         console.log('🔌 Connecting to MongoDB...');
-        await mongoose.connect(process.env.MONGODB_URI);
-        console.log('✓ MongoDB connected successfully');
+        await mongoose.connect(process.env.MONGODB_URI, {
+            serverSelectionTimeoutMS: 5000
+        }); console.log('✓ MongoDB connected successfully');
 
         // 2. Initialize AI client
         console.log('🤖 Initializing AI client...');
